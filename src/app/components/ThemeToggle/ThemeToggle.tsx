@@ -1,6 +1,6 @@
 "use client";
 
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "../ThemeProvider";
 import styles from "./ThemeToggle.module.css";
 
 export function ThemeToggle() {

@@ -34,6 +34,9 @@ export const metadata: Metadata = {
       "Portfolio showcasing projects and expertise in modern web development",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -43,6 +46,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Montserrat:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <a href="#main-content" className="skip-to-main">
           Skip to main content
