@@ -5,13 +5,24 @@
   overflow: hidden;
   transition:
     transform var(--transition-base),
-    box-shadow var(--transition-base);
+    box-shadow var(--transition-base),
+    opacity var(--transition-base);
   display: block;
+  cursor: grab;
 }
 
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
 }
 
 .imageContainer {
@@ -20,10 +31,14 @@
   aspect-ratio: 16 / 9;
   background: var(--color-border);
   overflow: hidden;
+  pointer-events: none;
+  user-select: none;
 }
 
 .image {
   object-fit: cover;
+  pointer-events: none;
+  user-select: none;
 }
 
 .content {

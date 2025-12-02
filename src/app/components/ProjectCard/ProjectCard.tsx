@@ -14,11 +14,29 @@ export interface Project {
 
 interface ProjectCardProps {
   project: Project;
+  draggable?: boolean;
+  onDragStart?: () => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDragEnd?: () => void;
+  isDragging?: boolean;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  draggable = false,
+  onDragStart,
+  onDragOver,
+  onDragEnd,
+  isDragging = false,
+}: ProjectCardProps) {
   return (
-    <article className={styles.card}>
+    <article
+      className={`${styles.card} ${isDragging ? styles.dragging : ""}`}
+      draggable={draggable}
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+      onDragEnd={onDragEnd}
+    >
       <div className={styles.imageContainer}>
         <Image
           src={project.gifUrl}

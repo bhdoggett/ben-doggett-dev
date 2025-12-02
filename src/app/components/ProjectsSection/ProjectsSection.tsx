@@ -8,11 +8,38 @@ interface ProjectsSectionProps {
   projects: Project[];
 }
 
-export function ProjectsSection({ projects }: ProjectsSectionProps) {
+export function ProjectsSection({
+  projects: initialProjects,
+}: ProjectsSectionProps) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const [projects, setProjects] = useState(initialProjects);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+
+    if (draggedIndex === null || draggedIndex === index) return;
+
+    const newProjects = [...projects];
+    const draggedProject = newProjects[draggedIndex];
+
+    newProjects.splice(draggedIndex, 1);
+    newProjects.splice(index, 0, draggedProject);
+
+    setProjects(newProjects);
+    setDraggedIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
   };
 
   return (
@@ -47,8 +74,16 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         className={`${styles.content} ${isExpanded ? styles.contentExpanded : styles.contentCollapsed}`}
       >
         <div className={styles.grid}>
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              draggable
+              onDragStart={() => handleDragStart(index)}
+              onDragOver={(e) => handleDragOver(e, index)}
+              onDragEnd={handleDragEnd}
+              isDragging={draggedIndex === index}
+            />
           ))}
         </div>
       </div>
