@@ -22,7 +22,7 @@ const sampleProjects: Project[] = [
     id: "2",
     title: "Git Story",
     description:
-      "AI-powered Git repository analyzer that transforms commit history into structured narratives. Connect via GitHub OAuth to automatically organize commits into meaningful chapters or analyze individual commits for detailed summaries of changes made.",
+      "AI-powered Git repository analyzer that transforms commit history into structured narratives. Connect via GitHub OAuth and initiate a story by organizing commits into meaningful chapters. Or analyze individual commits for detailed summaries of changes made.",
     gifUrl: "/assets/git-story.gif",
     gifAlt: "GitStory demonstration",
     websiteUrl: "https://gitstory.dev",
