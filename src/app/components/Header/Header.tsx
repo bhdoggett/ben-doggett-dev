@@ -12,12 +12,6 @@ interface HeaderProps {
   resumeUrl: string;
 }
 
-function TechDisplay({ tech }: { tech: string }) {
-  // import and use Frame-Motion and Animate FRame
-
-  return <div className={styles.techContainer}>{tech}</div>;
-}
-
 export function Header({ name, title, tech, resumeUrl }: HeaderProps) {
   const [showResume, setShowResume] = useState(false);
   const [currentTechIndex, setCurrentTechIndex] = useState(0);
@@ -28,7 +22,7 @@ export function Header({ name, title, tech, resumeUrl }: HeaderProps) {
 
     const interval = setInterval(() => {
       setCurrentTechIndex((prev) => (prev + 1) % tech.length);
-    }, 3000);
+    }, 2400);
 
     return () => clearInterval(interval);
   }, [tech.length]);
