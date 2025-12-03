@@ -19,7 +19,8 @@ body {
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #666666;
   --color-accent: #0070f3;
-  --color-fun: #ff7a6b;
+  --color-fun-primary: #fc6d5d;
+  --color-fun-secondary: #52c652;
   --color-border: #e0e0e0;
 
   /* Shadows */
@@ -58,7 +59,8 @@ body {
   --color-text-primary: #ffffff;
   --color-text-secondary: #a0a0a0;
   --color-accent: #3291ff;
-  --color-fun: #ff9d87;
+  --color-fun-primary: #fd9e67;
+  --color-fun-secondary: #81ed66;
   --color-border: #333333;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);

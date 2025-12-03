@@ -25,8 +25,40 @@
 
 .title {
   font-size: 1.5rem;
-  color: var(--color-fun);
+  color: var(--color-fun-primary);
   margin: 0;
+  line-height: 1.4;
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.titleText {
+  flex-shrink: 0;
+}
+
+.techContainer {
+  position: relative;
+  display: inline-block;
+  min-width: 300px;
+  line-height: 1.4;
+}
+
+.tech {
+  font-size: 1.5rem;
+  color: var(--color-fun-secondary);
+  line-height: 1.4;
+  transition: opacity 0.5s ease-in-out;
+  white-space: nowrap;
+}
+
+.techActive {
+  opacity: 1;
+}
+
+.techInactive {
+  opacity: 0;
+  pointer-events: none;
   line-height: 1.4;
 }
 
@@ -247,7 +279,11 @@
   }
 
   .title {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .tech {
+    font-size: 0.9rem;
   }
 
   .modalOverlay {

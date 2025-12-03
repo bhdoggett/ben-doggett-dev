@@ -48,11 +48,19 @@ export default function Home() {
     <div className={styles.container}>
       <Header
         name="Ben Doggett"
-        title="{Fullstack Software Engineer}"
+        title="Fullstack Software Engineer "
+        tech={[
+          "TypeScript | React | Node.js",
+          "Next.js | Express | MongoDB",
+          "PostgreSQL | Tailwind | REST APIs",
+        ]}
         resumeUrl="/assets/ben_doggett_resume.pdf"
       />
       <main id="main-content" className={styles.main}>
-        <AboutSection content="I'm a fullstack software developer with a background in leadership, problem-solving, and team collaboration. I'm committed to building intuitive, efficient software solutions that solve real-world problems and enhance user experience. With expertise in JavaScript, TypeScript, React, Next.js, Node.js, and Express, I create modern web applications that are both performant and user-friendly." />
+        <AboutSection
+          content="I'm a human who writes code for humans. So much modern technology exists to exploit and extract our attention and our dollars. I am committed to tech that will help real people solve real problems and create beautiful things. I would love to build awesome things with you.
+      "
+        />
         <ProjectsSection projects={sampleProjects} />
       </main>
       <Footer />

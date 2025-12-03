@@ -3,15 +3,35 @@
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "../ThemeToggle";
 import styles from "./Header.module.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface HeaderProps {
   name: string;
   title: string;
+  tech: string[];
   resumeUrl: string;
 }
 
-export function Header({ name, title, resumeUrl }: HeaderProps) {
+function TechDisplay({ tech }: { tech: string }) {
+  // import and use Frame-Motion and Animate FRame
+
+  return <div className={styles.techContainer}>{tech}</div>;
+}
+
+export function Header({ name, title, tech, resumeUrl }: HeaderProps) {
   const [showResume, setShowResume] = useState(false);
+  const [currentTechIndex, setCurrentTechIndex] = useState(0);
+
+  // Rotate through tech stack
+  useEffect(() => {
+    if (tech.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentTechIndex((prev) => (prev + 1) % tech.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [tech.length]);
 
   // Handle escape key to close modal
   useEffect(() => {
@@ -38,7 +58,24 @@ export function Header({ name, title, resumeUrl }: HeaderProps) {
       <header className={styles.header}>
         <div className={styles.leftSection}>
           <h1 className={styles.name}>{name}</h1>
-          <p className={styles.title}>{title}</p>
+          <p className={styles.title}>
+            <span className={styles.titleText}>{title}</span>
+            <span className={styles.tech}>
+              {"{ "}
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentTechIndex}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {tech[currentTechIndex]}
+                </motion.span>
+              </AnimatePresence>
+              {" }"}
+            </span>
+          </p>
         </div>
         <div className={styles.rightSection}>
           <button
