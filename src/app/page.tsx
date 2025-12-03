@@ -48,7 +48,7 @@ export default function Home() {
     <div className={styles.container}>
       <Header
         name="Ben Doggett"
-        title="Fullstack Software Engineer "
+        title="Fullstack Software Engineer"
         tech={[
           "TypeScript | React | Node.js",
           "Next.js | Express | MongoDB",
