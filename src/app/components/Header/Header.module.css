@@ -273,15 +273,18 @@
   }
 
   .name {
-    font-size: 2rem;
+    font-size: 2.1rem;
   }
 
   .title {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     font-size: 1rem;
   }
 
   .tech {
-    font-size: 0.87rem;
+    font-size: 0.8rem;
   }
 
   .modalOverlay {
@@ -318,9 +321,15 @@
     font-size: 3rem;
   }
 
-  .title,
-  .tech {
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     font-size: 1.5rem;
+  }
+
+  .tech {
+    font-size: 1.25rem;
   }
 
   .modalContent {
