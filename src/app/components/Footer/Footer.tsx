@@ -52,7 +52,7 @@ export function Footer() {
             LinkedIn
           </a>
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/bhdoggett"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
