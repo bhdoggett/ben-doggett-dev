@@ -2,6 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-lg);
+  padding-bottom: 6rem;
 }
 
 .main {

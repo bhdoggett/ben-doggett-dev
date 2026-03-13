@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProjectCard, Project } from "../ProjectCard";
 import styles from "./ProjectsSection.module.css";
 
@@ -14,6 +14,29 @@ export function ProjectsSection({
   const [isExpanded, setIsExpanded] = useState(true);
   const [projects, setProjects] = useState(initialProjects);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [showDragHint, setShowDragHint] = useState(false);
+
+  useEffect(() => {
+    const savedOrder = localStorage.getItem("projectsOrder");
+    if (savedOrder) {
+      try {
+        const savedIds: string[] = JSON.parse(savedOrder);
+        const reordered = savedIds
+          .map((id) => initialProjects.find((p) => p.id === id))
+          .filter(Boolean) as Project[];
+        if (reordered.length === initialProjects.length) {
+          setProjects(reordered);
+        }
+      } catch {
+        // ignore malformed data
+      }
+    }
+
+    const hintSeen = localStorage.getItem("dragHintSeen");
+    if (!hintSeen) {
+      setShowDragHint(true);
+    }
+  }, []);
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -21,6 +44,10 @@ export function ProjectsSection({
 
   const handleDragStart = (index: number) => {
     setDraggedIndex(index);
+    if (showDragHint) {
+      setShowDragHint(false);
+      localStorage.setItem("dragHintSeen", "1");
+    }
   };
 
   const handleDragOver = (e: React.DragEvent, index: number) => {
@@ -40,6 +67,10 @@ export function ProjectsSection({
 
   const handleDragEnd = () => {
     setDraggedIndex(null);
+    localStorage.setItem(
+      "projectsOrder",
+      JSON.stringify(projects.map((p) => p.id))
+    );
   };
 
   return (
@@ -73,6 +104,11 @@ export function ProjectsSection({
         id="projects-content"
         className={`${styles.content} ${isExpanded ? styles.contentExpanded : styles.contentCollapsed}`}
       >
+        {showDragHint && (
+          <p className={styles.dragHint} aria-live="polite">
+            Drag cards to reorder
+          </p>
+        )}
         <div className={styles.grid}>
           {projects.map((project, index) => (
             <ProjectCard

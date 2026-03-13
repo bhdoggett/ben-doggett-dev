@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { ThemeToggle } from "../ThemeToggle";
 import styles from "./Header.module.css";
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,7 +52,17 @@ export function Header({ name, title, tech, resumeUrl }: HeaderProps) {
     <>
       <header className={styles.header}>
         <div className={styles.leftSection}>
-          <h1 className={styles.name}>{name}</h1>
+          <div className={styles.nameRow}>
+            <Image
+              src="/assets/ben_doggett.jpeg"
+              alt="Ben Doggett"
+              width={72}
+              height={72}
+              className={styles.profilePhoto}
+              priority
+            />
+            <h1 className={styles.name}>{name}</h1>
+          </div>
           <p className={styles.title}>
             <span className={styles.titleText}>{title}</span>
             <span className={styles.tech}>

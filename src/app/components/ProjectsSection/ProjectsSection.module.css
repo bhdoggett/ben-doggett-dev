@@ -63,6 +63,13 @@
   opacity: 0;
 }
 
+.dragHint {
+  margin: var(--space-xs) 0 0;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.04em;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;

@@ -35,7 +35,25 @@
   user-select: none;
 }
 
+.playOverlay {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.card:hover .playOverlay {
+  opacity: 0;
+}
+
 .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   pointer-events: none;
   user-select: none;

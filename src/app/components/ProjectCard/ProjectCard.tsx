@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import styles from "./ProjectCard.module.css";
 
@@ -5,8 +8,9 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  gifUrl: string;
-  gifAlt: string;
+  mediaUrl: string;
+  mediaAlt: string;
+  mediaType?: "gif" | "video";
   websiteUrl?: string;
   githubUrl?: string;
   techStack?: string;
@@ -29,6 +33,20 @@ export function ProjectCard({
   onDragEnd,
   isDragging = false,
 }: ProjectCardProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    videoRef.current?.play();
+  };
+
+  const handleMouseLeave = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
+
   return (
     <article
       className={`${styles.card} ${isDragging ? styles.dragging : ""}`}
@@ -36,15 +54,43 @@ export function ProjectCard({
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDragEnd={onDragEnd}
+      onMouseEnter={project.mediaType === "video" ? handleMouseEnter : undefined}
+      onMouseLeave={project.mediaType === "video" ? handleMouseLeave : undefined}
     >
       <div className={styles.imageContainer}>
-        <Image
-          src={project.gifUrl}
-          alt={project.gifAlt}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className={styles.image}
-        />
+        {project.mediaType === "video" ? (
+          <>
+            <video
+              ref={videoRef}
+              src={project.mediaUrl}
+              aria-label={project.mediaAlt}
+              muted
+              loop
+              playsInline
+              className={styles.image}
+            />
+            <div className={styles.playOverlay} aria-hidden="true">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="24" cy="24" r="24" fill="rgba(0,0,0,0.45)" />
+                <polygon points="19,14 38,24 19,34" fill="white" />
+              </svg>
+            </div>
+          </>
+        ) : (
+          <Image
+            src={project.mediaUrl}
+            alt={project.mediaAlt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className={styles.image}
+          />
+        )}
       </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{project.title}</h3>
@@ -66,21 +112,6 @@ export function ProjectCard({
                 className={styles.link}
                 aria-label={`Visit ${project.title} website`}
               >
-                {/* <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg> */}
                 Website
               </a>
             )}
@@ -92,19 +123,6 @@ export function ProjectCard({
                 className={styles.link}
                 aria-label={`View ${project.title} on GitHub`}
               >
-                {/* <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg> */}
                 GitHub
               </a>
             )}

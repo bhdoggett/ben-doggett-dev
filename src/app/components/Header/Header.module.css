@@ -15,6 +15,21 @@
   gap: var(--space-xs);
 }
 
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.profilePhoto {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border);
+}
+
 .name {
   font-size: 4rem;
   font-weight: 800;
@@ -281,6 +296,11 @@
 
   .name {
     font-size: 2.1rem;
+  }
+
+  .profilePhoto {
+    width: 52px;
+    height: 52px;
   }
 
   .title {

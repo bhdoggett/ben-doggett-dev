@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bendoggett.com"),
   title: "Ben Doggett - Fullstack Software Engineer",
   description:
     "Portfolio of Ben Doggett, a Fullstack Software Engineer specializing in React, Next.js, TypeScript, and Node.js. View projects and download resume.",
@@ -33,6 +34,14 @@ export const metadata: Metadata = {
     description:
       "Portfolio showcasing projects and expertise in modern web development",
     type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ben Doggett - Fullstack Software Engineer",
+      },
+    ],
   },
   icons: {
     icon: [
