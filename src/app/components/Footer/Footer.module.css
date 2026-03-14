@@ -69,22 +69,19 @@
 /* Responsive Design */
 @media (max-width: 767px) {
   .footer {
-    margin-top: var(--space-lg);
-    padding: var(--space-lg) 0;
-  }
-
-  .links {
-    gap: var(--space-sm);
+    bottom: 1rem;
+    padding: 0.3rem 0.6rem;
   }
 
   .link {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
+    gap: 0.35rem;
   }
 
   .link svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 }
 

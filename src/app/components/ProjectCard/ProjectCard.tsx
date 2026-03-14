@@ -67,6 +67,7 @@ export function ProjectCard({
               muted
               loop
               playsInline
+              preload="metadata"
               className={styles.image}
             />
             <div className={styles.playOverlay} aria-hidden="true">
