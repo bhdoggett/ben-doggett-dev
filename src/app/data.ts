@@ -16,6 +16,18 @@ export const headerData = {
 
 export const projects: Project[] = [
   {
+    id: "4",
+    title: "_apps",
+    description:
+      "Collection of single-purpose browser tools built with a minimalist design philosophy. Leverages native browser APIs including Web Audio (tuner, metronome, decibel meter) and Canvas (drawing tool with IndexedDB persistence). Designed for open source contribution with an agent-optimized Claude Code slash command for contributors.",
+    mediaUrl: "/assets/_apps.mp4",
+    mediaAlt: "Underscore Apps demonstration",
+    mediaType: "video",
+    websiteUrl: "https://underscoreapps.com",
+    githubUrl: "https://github.com/bhdoggett/_apps",
+    techStack: "React 18, TypeScript, Vite, CSS (custom design system)",
+  },
+  {
     id: "1",
     title: "Citizen Sampler",
     description:
