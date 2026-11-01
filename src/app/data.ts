@@ -47,6 +47,18 @@ export const experienceEntries = [
 
 export const projects: Project[] = [
   {
+    id: "6",
+    title: "Lightz",
+    description:
+      "macOS desktop app for controlling DMX stage lighting through an Enttec USB interface, built for live production use. Recalls scenes with fade transitions, scales fixture groups in real time with DCA-style faders, and takes show-control triggers from Bitfocus Companion. Released as .dmg installers for Apple Silicon and Intel through versioned GitHub Releases.",
+    mediaUrl: "/assets/lightz.mp4",
+    mediaAlt: "Lightz web demo recalling lighting scenes",
+    mediaType: "video",
+    websiteUrl: "https://lightz.benapps.xyz",
+    githubUrl: "https://github.com/bhdoggett/lightz",
+    techStack: "TypeScript, React, Electron, CSS Modules, Express, serialport",
+  },
+  {
     id: "5",
     title: "Kraftwerd",
     description:
