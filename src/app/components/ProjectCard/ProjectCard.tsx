@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
+import { VideoPreview, useHoverPlayback } from "../VideoPreview";
 import styles from "./ProjectCard.module.css";
 
 export interface Project {
@@ -33,19 +33,8 @@ export function ProjectCard({
   onDragEnd,
   isDragging = false,
 }: ProjectCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleMouseEnter = () => {
-    videoRef.current?.play();
-  };
-
-  const handleMouseLeave = () => {
-    const video = videoRef.current;
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
-    }
-  };
+  const { videoRef, hoverHandlers } = useHoverPlayback();
+  const isVideo = project.mediaType === "video";
 
   return (
     <article
@@ -54,35 +43,15 @@ export function ProjectCard({
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDragEnd={onDragEnd}
-      onMouseEnter={project.mediaType === "video" ? handleMouseEnter : undefined}
-      onMouseLeave={project.mediaType === "video" ? handleMouseLeave : undefined}
+      {...(isVideo ? hoverHandlers : {})}
     >
       <div className={styles.imageContainer}>
-        {project.mediaType === "video" ? (
-          <>
-            <video
-              ref={videoRef}
-              src={project.mediaUrl}
-              aria-label={project.mediaAlt}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className={styles.image}
-            />
-            <div className={styles.playOverlay} aria-hidden="true">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="24" cy="24" r="24" fill="rgba(0,0,0,0.45)" />
-                <polygon points="19,14 38,24 19,34" fill="white" />
-              </svg>
-            </div>
-          </>
+        {isVideo ? (
+          <VideoPreview
+            src={project.mediaUrl}
+            alt={project.mediaAlt}
+            videoRef={videoRef}
+          />
         ) : (
           <Image
             src={project.mediaUrl}
