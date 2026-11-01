@@ -31,21 +31,7 @@
   aspect-ratio: 16 / 9;
   background: var(--color-border);
   overflow: hidden;
-  pointer-events: none;
   user-select: none;
-}
-
-.playOverlay {
-  position: absolute;
-  top: var(--space-sm);
-  left: var(--space-sm);
-  opacity: 1;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-}
-
-.card:hover .playOverlay {
-  opacity: 0;
 }
 
 .image {

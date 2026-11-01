@@ -2,6 +2,7 @@ import { Header } from "./components/Header";
 import { AboutSection } from "./components/AboutSection";
 import { SkillsSection } from "./components/SkillsSection";
 import { EducationSection } from "./components/EducationSection";
+import { ExperienceSection } from "./components/ExperienceSection";
 import { ProjectsSection } from "./components/ProjectsSection";
 import { Footer } from "./components/Footer";
 import { aboutContent, headerData, projects } from "./data";
@@ -15,6 +16,7 @@ export default function Home() {
         <AboutSection content={aboutContent} />
         <SkillsSection />
         <EducationSection />
+        <ExperienceSection />
         <ProjectsSection projects={projects} />
       </main>
       <Footer />
